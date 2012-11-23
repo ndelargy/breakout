@@ -34,6 +34,7 @@
   <script type="text/javascript" src="js/underscore.js"></script>
   <script type="text/javascript" src="js/jquery.js"></script>
   <script type="text/javascript" src="js/mouse.js"></script>
+    <script type="text/javascript" src="js/keyboard.js"></script>
   <!--<script type="text/javascript" src="js/background.js"></script>-->
   <script type="text/javascript" src="js/game.js"></script>
 </body>

@@ -194,19 +194,13 @@
     registerMouseMove(document.getElementById("gameZone"), function (posx, posy, previousX, previousY) {
         padSpeed += (posx - previousX) * 0.2;
     });
-
-    window.addEventListener('keydown', function (evt) {
-        switch (evt.keyCode) {
-            // Left arrow
-            case 37:
-                padSpeed -= 10;
-                break;
-            // Right arrow   
-            case 39:
-                padSpeed += 10;
-                break;
-        }
-    }, true);
+    
+    KeyboardController({
+        37: function() { padSpeed -= 5; },
+        38: function() {  },
+        39: function() { padSpeed += 5; },
+        40: function() {  }
+    }, 10);
 
     function checkWindow() {
         maxX = window.innerWidth - minX;
