@@ -1,7 +1,9 @@
 // Keyboard input with customisable repeat (set to 0 for no key repeat)
 //
 // Kudos to http://stackoverflow.com/questions/3691461/remove-key-press-delay-in-javascript
-function KeyboardController(keys, repeat) {
+
+
+function KeyboardController(keyset) {
     // Lookup of key codes to timer ID, or null for no repeat
     //
     var timers= {};
@@ -11,13 +13,13 @@ function KeyboardController(keys, repeat) {
     //
     document.onkeydown= function(event) {
         var key= (event || window.event).keyCode;
-        if (!(key in keys))
+        if (!(key in keyset))
             return true;
         if (!(key in timers)) {
             timers[key]= null;
-            keys[key]();
-            if (repeat!==0)
-                timers[key]= setInterval(keys[key], repeat);
+            keyset[key].callback();
+            if (keyset[key].interval !== 0)
+                timers[key]= setInterval(keyset[key].callback, keyset[key].interval);
         }
         return false;
     };

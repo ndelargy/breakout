@@ -194,13 +194,6 @@
     registerMouseMove(document.getElementById("gameZone"), function (posx, posy, previousX, previousY) {
         padSpeed += (posx - previousX) * 0.2;
     });
-    
-    KeyboardController({
-        37: function() { padSpeed -= 5; },
-        38: function() {  },
-        39: function() { padSpeed += 5; },
-        40: function() {  }
-    }, 10);
 
     function checkWindow() {
         maxX = window.innerWidth - minX;
@@ -394,6 +387,7 @@
         balls = [ball()];
     
         padX = (window.innerWidth - padWidth) / 2.0;
+        
         _.each(balls, function(ball){
             startBall(ball);
         });
@@ -415,7 +409,7 @@
             clearInterval(gameIntervalID);
 
         startDate = (new Date()).getTime();
-        ;
+        
         gameIntervalID = setInterval(gameLoop, 16);
     }
 
@@ -423,4 +417,10 @@
     window.onresize = initGame;
 
     initGame();
+    
+    KeyboardController({
+        32: {interval:0, callback: startGame },
+        37: {interval:10, callback: function() { padSpeed -= 5; } },
+        39: {interval:10, callback: function() { padSpeed += 5; } }
+    });
 }());
